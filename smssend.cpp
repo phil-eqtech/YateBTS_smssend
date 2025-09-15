@@ -142,6 +142,7 @@ namespace {
 							}
 							else
 								msg.retValue() << "failed to send message.\r\n";
+								return true;
 						}
 					}
 				}

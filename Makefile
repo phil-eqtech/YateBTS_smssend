@@ -4,16 +4,20 @@
 # SmsSend is a plugin for Yate, allowing to send a sms to a phone number
 # 
 
-NAME	= smssend.yate
-INSTALL = /usr/local/lib/yate/$(NAME)
+NAME1	= smssend.yate
+NAME2	= smsbsend.yate
+INSTALL1 = /usr/local/lib/yate/$(NAME1)
+INSTALL2 = /usr/local/lib/yate/$(NAME2)
 
 CC		= g++
 RM		= rm -f
 LN		= ln -s
 CP		= cp
 
-SRCS	= smssend.cpp
-OBJS	= $(SRCS:.cpp=.o)
+SRCS1	= smssend.cpp
+OBJS1	= $(SRCS2:.cpp=.o)
+SRCS2	= smsbsend.cpp
+OBJS2	= $(SRCS1:.cpp=.o)
 CFLAGS	= -std=c++11 -fPIC 
 LFLAGS	= -shared
 LIBS 	=
@@ -26,23 +30,30 @@ endif
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
-all: $(NAME)
+all: $(NAME1) $(NAME2)
 
-$(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LFLAGS) $(LIBS)
+$(NAME1): $(OBJS1)
+	$(CC) -o $(NAME1) $(OBJS1) $(LFLAGS) $(LIBS)
+
+$(NAME2): $(OBJS2)
+	$(CC) -o $(NAME2) $(OBJS2) $(LFLAGS) $(LIBS)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS1)
+	$(RM) $(OBJS2)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME1)
+	$(RM) $(NAME2)
 
 re: fclean all
 
 install:
-	$(CP) $(NAME) $(INSTALL)
+	$(CP) $(NAME1) $(INSTALL1)
+	$(CP) $(NAME2) $(INSTALL2)
 
 uninstall: fclean
-	$(RM) $(INSTALL)
+	$(RM) $(INSTALL1)
+	$(RM) $(INSTALL2)
 
 .PHONY: all clean fclean .cpp.o re install
