@@ -10,7 +10,7 @@ Furthermore, it disables the Eliza feedback message when an error occurs, allowi
 
 First of all, you need to install yate and yateBTS. 
 
-Using a BladeRF x40, I used the `yate-rc-2.tar.gz` archive and [NUAND's instructions](https://www.nuand.com/support/#bts)
+Using a BladeRF x40, I used the `yate-rc-3.tar.gz` archive and [NUAND's instructions](https://www.nuand.com/support/#bts)
 
 
 ## Usage - SMS
